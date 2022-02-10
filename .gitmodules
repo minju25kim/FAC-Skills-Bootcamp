@@ -1,0 +1,3 @@
+[submodule "01 first week/game"]
+	path = 01 first week/game
+	url = https://github.com/lascellesabercrombie/SquareGame.git
