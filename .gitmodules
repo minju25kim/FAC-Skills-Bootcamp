@@ -1,8 +1,6 @@
 [submodule "01 first week/game"]
 	path = 01 first week/game
 	url = https://github.com/lascellesabercrombie/SquareGame.git
-[submodule "01 first week/git-workflow/FACgitworkflow"]
-	path = 01 first week/git-workflow/FACgitworkflow
-	url = https://github.com/ahoat/FACgitworkflow.git
 [submodule "01 first week/git-workflow"]
+	path = 01 first week/git-workflow
 	url = https://github.com/ahoat/FACgitworkflow.git
