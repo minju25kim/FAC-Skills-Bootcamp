@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Real world fetch</title>
+  </head>
+  <body>
+    <h1>Pokemon Search</h1>
+    <form action="" id="testForm">
+      <input type="text" id="search" />
+      <button type="submit">Search</button>
+    </form>
+    <section>
+      <h1 class="pokemon-name"></h1>
+      <br>
+      <img class="pokemon-sprite"></img>
+      <br>
+      <span class="pokemon-type"></span>
+    </section>
+    <script>
+      const testForm = document.querySelector("form");
+      const pokemonName = document.querySelector(".pokemon-name");
+      const pokemonSprite = document.querySelector(".pokemon-sprite");
+      const pokemonType = document.querySelector('.pokemon-type')
+
+      testForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const name = testForm.querySelector("input").value.toLowerCase();
+        fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
+          .then((response) => {
+            if (!response.ok) throw new Error(response.status);
+            return response.json();
+          })
+          .then((response) => {
+            let name = response.name;
+            let sprite = response.sprites.front_default;
+            let types = response.types
+            let type=[]
+            types.forEach(x=>{
+              type.push(x.type.name)
+            })
+            let typeStr = type.join(" ")
+            pokemonType.innerText = typeStr
+            pokemonName.innerText= name;
+            pokemonSprite.setAttribute('src',`${sprite}`)
+          })
+          .catch(error=>{
+            let src = `https://http.cat/${error.message}`
+            pokemonSprite.setAttribute('src',`${src}`)
+          }
+          );
+      });
+    </script>
+  </body>
+</html>

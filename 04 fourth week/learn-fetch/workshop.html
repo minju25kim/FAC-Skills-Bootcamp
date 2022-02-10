@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learn Fetch & Promises</title>
+  </head>
+  <body>
+    <h1>Open the console</h1>
+    <script>
+      function getUser(username) {
+        for (let i = 0; i < username.length; i++) {
+          console.log(username[i]);
+          let url = `https://api.github.com/users/${username[i]}`;
+          console.log(url);
+          let response = fetch(url);
+          let userData = response.then((userResponse) => userResponse.json());
+          console.log(userData);
+          return userData;
+        }
+      }
+      // function getRepos(userData) {
+      //   console.log(userData);
+      //   for (let i = 0; i < userData.length; i++) {
+      //     let userRepoUrl = userData[i].repos_url;
+      //     let userRepoResponse = fetch(userRepoUrl);
+      //     userRepoResponse
+      //       .then((userRepoResponse) => userRepoResponse.json())
+      //       .then((userRepoData) => console.log(userRepoData));
+      //   }
+      // }
+      // getUser("kmj673")
+      //   // .then((userResponse) => userResponse.json())
+      //   .then((userData) => getRepos(userData))
+      //   .then((error) => console.log(error));
+
+      Promise.all(["kmj673", "starsuit"]).then((data) => getUser(data));
+      // .then((userData) => getRepos(userData));
+    </script>
+  </body>
+</html>
